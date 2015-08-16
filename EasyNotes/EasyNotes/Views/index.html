@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+<head>
+    <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=8,IE=edge" />
+    <title>Easy Notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="shortcut icon" href="../Content/Images/gnome-sticky-notes-applet.ico" />
+
+    <link type="text/css" rel="stylesheet" href="../Content/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="../Content/main.css" />
+
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/angular-route.min.js"></script>
+
+    <!--
+        IE8 supports media queries, HTML5 elements, place holder
+        -->
+    <!--[if lt IE 9]>
+        <script src="../Scripts/js/html5shiv.js"></script>
+        <script src="../Scripts/js/respond.min.js"></script>
+        <script src="../Scripts/js/placeholder.js"></script>
+
+        <script>
+            document.createElement('ng-include');
+            document.createElement('ng-pluralize');
+            document.createElement('ng-view');
+            // Optionally these for CSS
+            document.createElement('ng:include');
+            document.createElement('ng:pluralize');
+            document.createElement('ng:view');
+        </script>
+    <![endif]-->
+
+    <script src="../Scripts/app/app.js"></script>
+    <script src="../Scripts/app/storage.js"></script>
+    <script src="../Scripts/app/noteService.js"></script>
+</head>
+<body id="ng-app" data-ng-app="app" ng-controller="homeCtrl">
+    <div class="container">
+        <header>
+            <h1>Notes Management</h1>
+        </header>
+        <section class="container">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Notes
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-inline">
+                                    <label>Search</label>
+                                    <input type="text" class="form-control ng-pristine ng-valid" ng-model="notes.searchText">
+                                </div>
+                            </div>
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <a href="" ng-click="notes.order('noteDetails')">Notes</a>
+                                            <span class="glyphicon" ng-show="notes.predicate === 'noteDetails'" ng-class="{'glyphicon-chevron-up':notes.reverse,'glyphicon-chevron-down':!notes.reverse}"></span>
+                                        </th>
+                                        <th>
+                                            <a href="" ng-click="notes.order('modificationDate')">Modification Date</a>
+                                            <span class="glyphicon" ng-show="notes.predicate === 'modificationDate'" ng-class="{'glyphicon-chevron-up':notes.reverse,'glyphicon-chevron-down':!notes.reverse}"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-class="{selected: item === notes.selectedItem}"
+                                        ng-click="notes.selectionChange(item)"
+                                        ng-repeat="item in notes.items  | orderBy:notes.predicate:notes.reverse">
+                                        <td>
+                                            <span ng-bind-html="item.noteDetails | highlight:notes.searchText">{{item.noteDetails}}</span>
+                                            {{item.more ? '...' : ''}}
+                                        </td>
+                                        <td>
+                                            {{item.modificationDate | date:'medium'}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Current Note
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" name="noteForm">
+                                    <div class="form-group">
+                                        <label for="note-details">
+                                            Note Details
+                                        </label>
+                                        <textarea class="form-control" id="note-details" name="noteDetails" ng-model="note.noteDetails" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="modification-date">
+                                            Modification Date
+                                        </label>
+                                        <input type="text" class="form-control" id="modification-date" ng-model="note.modificationDate" readonly disabled />
+                                    </div>
+                                    <button ng-click="note.submit()" type="submit" class="btn btn-success">
+                                        {{!note.id ? 'Insert' : 'Update'}}
+                                    </button>
+                                    <button ng-click="note.delete()" ng-disabled="!note.id" type="button" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                    <button ng-click="cancel()" type="button" class="btn btn-default">
+                                        Cancel
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            Creative notes
+        </footer>
+    </div>
+</body>
+</html>

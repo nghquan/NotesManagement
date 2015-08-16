@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNotes", "EasyNotes\EasyNotes.csproj", "{0C999FF2-7C6F-4503-B621-ED97F878D187}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNotes.Tests", "EasyNotes.Tests\EasyNotes.Tests.csproj", "{822A5FB5-8673-4A74-8EB1-2DC66A9046C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C999FF2-7C6F-4503-B621-ED97F878D187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C999FF2-7C6F-4503-B621-ED97F878D187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C999FF2-7C6F-4503-B621-ED97F878D187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C999FF2-7C6F-4503-B621-ED97F878D187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{822A5FB5-8673-4A74-8EB1-2DC66A9046C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{822A5FB5-8673-4A74-8EB1-2DC66A9046C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{822A5FB5-8673-4A74-8EB1-2DC66A9046C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{822A5FB5-8673-4A74-8EB1-2DC66A9046C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

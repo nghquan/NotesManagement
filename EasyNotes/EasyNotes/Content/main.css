@@ -1,0 +1,16 @@
+﻿table > tbody > tr.selected,
+.table-hover > tbody > tr.selected {
+    background-color: dodgerblue;
+}
+
+.highlighted {
+    background: yellow;
+}
+
+.row {
+    margin-bottom: 5px;
+}
+
+table thead {
+    background-color: gainsboro;
+}
