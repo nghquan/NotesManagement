@@ -1,6 +1,8 @@
 ﻿angular.module('app').service('noteService', ['storage', '$q', function (storage, $q) {
     var notes = (updateFromStorage() || []);
 
+	var uniqueId = (storage.extractItem("uniqueID") || 1);
+	
     function updateFromStorage() {
         notes = storage.extractItem("notes");
         if (notes) {
@@ -17,6 +19,7 @@
                     function handlePersist() {
                         //save notes from memory to storage
                         storage.setItem("notes", notes);
+						storage.setItem("uniqueID", uniqueId);
                     }
                 );
 
@@ -46,12 +49,13 @@
     };
 
     var add = function (note) {
-        notes.push({
-            id: notes.length + 1,
+		var newNote = {
+            id: uniqueId++,
             noteDetails: note.noteDetails,
             modificationDate: new Date()
-        });
-        return ($q.when(note.id));
+        };
+        notes.push(newNote);
+        return ($q.when(newNote.id));
     };
 
     var updateSmallNoteDetails = function (note) {
